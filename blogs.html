@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-bs-theme="light">
+<head>
+  <title>Kedar Oak Research Analyst - Articles</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="assets/logo.jpeg" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="assets/css/aos.css"> -->
+  <link rel="stylesheet" href="assets/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <style>
+    h5 {
+      padding-top: 25px;
+    }
+
+    .img {
+      max-height: 300px;
+      width: 100%;
+      object-fit: cover;
+      background-position: top;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Accessibility Toolbar (GIGW 3.0) -->
+  <div class="a11y-toolbar" role="region" aria-label="Accessibility options">
+    <div class="container">
+      <span class="a11y-label">Text Size:</span>
+      <button type="button" onclick="setFontSize('normal')" aria-label="Normal text size">A</button>
+      <button type="button" onclick="setFontSize('large')" aria-label="Large text size">A+</button>
+      <button type="button" onclick="setFontSize('largest')" aria-label="Largest text size">A++</button>
+      <div class="a11y-divider" aria-hidden="true"></div>
+      <button type="button" onclick="toggleContrast()" aria-label="Toggle high contrast mode"><i class="fas fa-adjust" aria-hidden="true"></i> High Contrast</button>
+      <button type="button" onclick="toggleGrayscale()" aria-label="Toggle grayscale mode"><i class="fas fa-palette" aria-hidden="true"></i> Grayscale</button>
+      <button type="button" onclick="toggleDyslexiaFont()" aria-label="Toggle dyslexia-friendly font"><i class="fas fa-font" aria-hidden="true"></i> Dyslexia Font</button>
+      <div class="a11y-divider" aria-hidden="true"></div>
+      <button type="button" onclick="toggleLineSpacing()" aria-label="Toggle increased line spacing"><i class="fas fa-text-height" aria-hidden="true"></i> Line Spacing</button>
+      <button type="button" onclick="toggleReadingGuide()" aria-label="Toggle reading guide"><i class="fas fa-ruler-horizontal" aria-hidden="true"></i> Reading Guide</button>
+      <button type="button" onclick="toggleReadAloud()" aria-label="Read page content aloud"><i class="fas fa-volume-up" aria-hidden="true"></i> Read Aloud</button>
+    </div>
+  </div>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ===============>> Header section start here <<================= -->
+  <header class="header-section header-section--style2">
+    <div class="header-bottom">
+      <div class="container">
+        <div class="header-wrapper">
+          <div class="logo">
+            <a href="index.html">
+              <img class="dark" src="assets/logo.jpeg" alt="Kedar Oak Research Analyst - Home">
+            </a>
+          </div>
+          <div class="menu-area">
+            <nav role="navigation" aria-label="Main navigation">
+            <ul class="menu menu--style1">
+              <li class="megamenu">
+                <a href="index.html">Home</a>
+              </li>
+              <li>
+                <a href="blogs.html">Articles</a>
+              </li>
+              <li>
+                <a href="galler.html">Gallery</a>
+              </li>
+              <li>
+                <a href="contact.html">Connect Us</a>
+              </li>
+              <li>
+                <a href="#" role="button" aria-expanded="false" aria-haspopup="true" tabindex="0">Compliance</a>
+                <ul class="submenu">
+                  <li><a href="./1.Investor Charter.pdf" target="_blank">Investor Charter</a></li>
+                  <li><a href="./Investor complaints data for RA.pdf" target="_blank">Investor Complaints</a></li>
+                  <li><a href="./MITC FORMAT.pdf" target="_blank">MITC</a></li>
+                  <li><a href="./TERMS &amp; CONDITIONS .pdf" target="_blank">Terms and Conditions</a></li>
+                </ul>
+              </li>
+            </ul>
+            </nav>
+          </div>
+          <div class="header-action">
+            <div class="menu-area">
+              <div class="header-bar d-lg-none header-bar--style1" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ===============>> Header section end here <<================= -->
+
+  <main id="main-content" role="main">
+  <h1 class="visually-hidden">Kedar Oak Research Analyst - Articles</h1>
+
+  <!-- ================> Page header start here <================== -->
+  <section class="page-header bg--cover" style="background-image:url(assets/images/header/1.png)">
+    <div class="container">
+      <div class="page-header__content" data-aos="fade-right" data-aos-duration="1000">
+        <h2>Article</h2>
+        <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Articles</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="page-header__shape">
+        <span class="page-header__shape-item page-header__shape-item--1"><img src="assets/images/header/2.png"
+            alt="" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+  <!-- ================> Page header end here <================== -->
+
+  <!-- ===============>> article section start here <<================= -->
+  <div class="blog padding-top padding-bottom section-bg-color">
+    <div class="container">
+      <div class="blog__wrapper">
+        <div id="blogGrid" class="row g-4">
+          <!-- Blogs will be loaded here -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ===============>> article section end here <<================= -->
+
+  </main>
+
+  <!-- ===============>> footer start here <<================= -->
+  <footer class="footer footer--style2">
+    <div class="container">
+      <div class="footer__wrapper">
+        <div class="footer__bottom">
+          <div class="footer__end">
+            <div class="footer__end-copyright">
+              <p class="mb-0">Copyright © 2026 KesarSecurities. Designed and Developed by MuseOne</p>
+              <p class="mb-0" style="font-size: 12px; opacity: 0.7;">Last Updated: March 2026</p>
+            </div>
+            <div>
+              <ul class="social">
+                <li class="social__item">
+                  <a href="https://www.facebook.com/share/1ApUnLCszC/" target="_blank"
+                    class="social__link social__link--style222" aria-label="Visit our Facebook page (opens in new tab)"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li class="social__item">
+                  <a href="https://www.linkedin.com/in/kedar-oak?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                    target="_blank" class="social__link social__link--style222" aria-label="Visit our LinkedIn profile (opens in new tab)"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li class="social__item">
+                  <a href="https://www.instagram.com/kedar.oak19?igsh=MXJpZWpwYzlnMXBmdg==" target="_blank"
+                    class="social__link social__link--style222" aria-label="Visit our Instagram profile (opens in new tab)"><i class="fab fa-instagram"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__shape">
+      <span class="footer__shape-item footer__shape-item--1"><img src="assets/images/footer/1.png"
+          alt="" aria-hidden="true"></span>
+      <span class="footer__shape-item footer__shape-item--2"> <span></span> </span>
+      <span class="footer__shape-item footer__shape-item--4"><img src="assets/images/icon/shape/2.png"
+          alt="" aria-hidden="true"></span>
+      <span class="footer__shape-item footer__shape-item--5"><img src="assets/images/icon/shape/1.png"
+          alt="" aria-hidden="true"></span>
+    </div>
+  </footer>
+  <!-- ===============>> footer end here <<================= -->
+
+  <!-- ===============>> scrollToTop start here <<================= -->
+  <a href="#" class="scrollToTop scrollToTop--style1" aria-label="Scroll to top of page"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+  <!-- ===============>> scrollToTop ending here <<================= -->
+
+  <!-- vendor plugins -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/all.min.js"></script>
+  <script src="assets/js/swiper-bundle.min.js"></script>
+  <script src="assets/js/aos.js"></script>
+  <script src="assets/js/fslightbox.js"></script>
+  <script src="assets/js/purecounter_vanilla.js"></script>
+  <script src="assets/js/custom.js"></script>
+
+  <!-- Blog Loading Script -->
+  <script>
+    console.log('=== BLOG SCRIPT START ===');
+    
+    async function loadBlogs() {
+      console.log('loadBlogs() called');
+      const blogGrid = document.getElementById('blogGrid');
+      
+      if (!blogGrid) {
+        console.error('ERROR: blogGrid not found!');
+        return;
+      }
+      
+      console.log('blogGrid element:', blogGrid);
+      
+      // Show visible loading message
+      blogGrid.innerHTML = '<div class="col-12" role="status" aria-live="polite" style="padding: 60px 0; text-align: center;"><p>Loading articles...</p></div>';
+      
+      try {
+        console.log('Fetching blogs-data.json...');
+        const response = await fetch('blogs-data.json');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        console.log('✓ Data loaded:', data.blogs.length, 'blogs');
+        
+        // Build HTML string
+        let html = '';
+        
+        data.blogs.forEach((blog, index) => {
+          console.log(`Building blog ${index + 1}:`, blog.title.substring(0, 30));
+          
+          html += `
+            <div class="col-sm-6 col-lg-4" style="display: block !important; visibility: visible !important; opacity: 1 !important;">
+              <div class="blog__item" data-aos="fade-up" data-aos-duration="${800 + (index * 100)}" style="visibility: visible !important; opacity: 1 !important;">
+                <div class="blog__item-inner blog__item-inner--style2" style="visibility: visible !important;">
+                  <div class="blog__thumb" style="visibility: visible !important;">
+                    <img class="img" src="${blog.image}" alt="${blog.title}" style="visibility: visible !important; opacity: 1 !important;">
+                    <h5 class="style2" style="visibility: visible !important;">
+                      <span style="padding: 10px; width: 100%; font-size: 20px; visibility: visible !important;" 
+                            class="blog__meta-tag blog__meta-tag--style1">
+                        ${blog.title}
+                      </span>
+                    </h5>
+                    <h5 class="trk-btn trk-btn--border trk-btn--primary mt-4 d-block" style="visibility: visible !important;">
+                      <a href="blog-detail.html?id=${blog.id}" aria-label="Read more about ${blog.title}">Read More</a>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        
+        console.log('HTML built, length:', html.length);
+        console.log('Setting innerHTML...');
+        
+        blogGrid.innerHTML = html;
+        
+        console.log('✓ innerHTML set!');
+        console.log('blogGrid.children.length:', blogGrid.children.length);
+        
+        // Force visibility
+        setTimeout(() => {
+          const allCols = blogGrid.querySelectorAll('.col-sm-6, .col-lg-4');
+          console.log('Found columns:', allCols.length);
+          
+          allCols.forEach((col, i) => {
+            col.style.display = 'block';
+            col.style.visibility = 'visible';
+            col.style.opacity = '1';
+            console.log(`Column ${i} forced visible`);
+          });
+          
+          // Reinitialize AOS
+          if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+            console.log('✓ AOS refreshed');
+          }
+          
+          console.log('=== RENDERING COMPLETE ===');
+        }, 100);
+        
+      } catch (error) {
+        console.error('✗ ERROR:', error);
+        blogGrid.innerHTML = `
+          <div class="col-12" role="alert" style="padding: 60px 20px; text-align: center;">
+            <h2 style="color: #cc0000;">Error Loading Blogs</h2>
+            <p style="font-size: 18px; color: #333;">${error.message}</p>
+            <p>Check console (F12) for details</p>
+          </div>
+        `;
+      }
+    }
+    
+    // Execute
+    if (document.readyState === 'loading') {
+      console.log('Waiting for DOM...');
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOM loaded');
+        loadBlogs();
+      });
+    } else {
+      console.log('DOM already loaded');
+      loadBlogs();
+    }
+  </script>
+
+</body>
+</html>

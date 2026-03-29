@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-bs-theme="light">
+<head>
+  <title id="pageTitle">Kedar Oak Research Analyst - Article</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="assets/logo.jpeg" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/aos.css">
+  <link rel="stylesheet" href="assets/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .blog-detail-loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 400px;
+      font-size: 1.2rem;
+      color: #666;
+    }
+
+    .blog-detail__header {
+      margin-bottom: 2rem;
+    }
+
+    .blog-detail__title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+
+    .blog-detail__meta {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .blog-detail__meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .blog-detail__image {
+      width: 50%;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .blog-detail__content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    .blog-detail__content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .blog-detail__content h2,
+    .blog-detail__content h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .blog-detail__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: gap 0.3s ease;
+    }
+    .related-blogs {
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 2px solid #e5e5e5;
+    }
+
+    .related-blogs__title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .blog-error {
+      text-align: center;
+      padding: 4rem 0;
+    }
+
+    .blog-error__title {
+      font-size: 2rem;
+      color: #dc3545;
+      margin-bottom: 1rem;
+    }
+
+    .blog-error__text {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Accessibility Toolbar (GIGW 3.0) -->
+  <div class="a11y-toolbar" role="region" aria-label="Accessibility options">
+    <div class="container">
+      <span class="a11y-label">Text Size:</span>
+      <button type="button" onclick="setFontSize('normal')" aria-label="Normal text size">A</button>
+      <button type="button" onclick="setFontSize('large')" aria-label="Large text size">A+</button>
+      <button type="button" onclick="setFontSize('largest')" aria-label="Largest text size">A++</button>
+      <div class="a11y-divider" aria-hidden="true"></div>
+      <button type="button" onclick="toggleContrast()" aria-label="Toggle high contrast mode"><i class="fas fa-adjust" aria-hidden="true"></i> High Contrast</button>
+      <button type="button" onclick="toggleGrayscale()" aria-label="Toggle grayscale mode"><i class="fas fa-palette" aria-hidden="true"></i> Grayscale</button>
+      <button type="button" onclick="toggleDyslexiaFont()" aria-label="Toggle dyslexia-friendly font"><i class="fas fa-font" aria-hidden="true"></i> Dyslexia Font</button>
+      <div class="a11y-divider" aria-hidden="true"></div>
+      <button type="button" onclick="toggleLineSpacing()" aria-label="Toggle increased line spacing"><i class="fas fa-text-height" aria-hidden="true"></i> Line Spacing</button>
+      <button type="button" onclick="toggleReadingGuide()" aria-label="Toggle reading guide"><i class="fas fa-ruler-horizontal" aria-hidden="true"></i> Reading Guide</button>
+      <button type="button" onclick="toggleReadAloud()" aria-label="Read page content aloud"><i class="fas fa-volume-up" aria-hidden="true"></i> Read Aloud</button>
+    </div>
+  </div>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ===============>> light&dark switch start here <<================= -->
+  <div class="lightdark-switch d-none">
+    <span class="switch-btn" id="btnSwitch"><img src="assets/images/icon/moon.svg" alt="light-dark-switchbtn"
+        class="swtich-icon"></span>
+  </div>
+  <!-- ===============>> light&dark switch end here <<================= -->
+
+  <!-- ===============>> Header section start here <<================= -->
+  <header class="header-section header-section--style2">
+    <div class="header-bottom">
+      <div class="container">
+        <div class="header-wrapper">
+          <div class="logo">
+            <a href="index.html">
+              <img class="dark" src="assets/logo.jpeg" alt="Kedar Oak Research Analyst - Home">
+            </a>
+          </div>
+          <div class="menu-area">
+            <nav role="navigation" aria-label="Main navigation">
+            <ul class="menu menu--style1">
+              <li class="megamenu">
+                <a href="index.html">Home</a>
+              </li>
+              <li>
+                <a href="blogs.html">Articles</a>
+              </li>
+              <li>
+                <a href="galler.html">Gallery</a>
+              </li>
+              <li>
+                <a href="contact.html">Connect Us</a>
+              </li>
+              <li>
+                <a href="#" role="button" aria-expanded="false" aria-haspopup="true" tabindex="0">Compliance</a>
+                <ul class="submenu">
+                  <li><a href="./1.Investor Charter.pdf" target="_blank">Investor Charter</a></li>
+                  <li><a href="./Investor complaints data for RA.pdf" target="_blank">Investor Complaints</a></li>
+                  <li><a href="./MITC FORMAT.pdf" target="_blank">MITC</a></li>
+                  <li><a href="./TERMS &amp; CONDITIONS .pdf" target="_blank">Terms and Conditions</a></li>
+                </ul>
+              </li>
+            </ul>
+            </nav>
+          </div>
+          <div class="header-action">
+            <div class="menu-area">
+              <div class="header-bar d-lg-none header-bar--style1" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ===============>> Header section end here <<================= -->
+
+  <main id="main-content" role="main">
+
+  <!-- ================> Page header start here <================== -->
+  <section class="page-header bg--cover" style="background-image:url(assets/images/header/1.png)">
+    <div class="container">
+      <div class="page-header__content" data-aos="fade-right" data-aos-duration="1000">
+        <h2 id="headerTitle">Article</h2>
+        <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="blogs.html">Articles</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Article Detail</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="page-header__shape">
+        <span class="page-header__shape-item page-header__shape-item--1"><img src="assets/images/header/2.png"
+            alt="" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+  <!-- ================> Page header end here <================== -->
+
+  <!-- ===============>> Blog Detail section start here <<================= -->
+  <div class="blog-detail padding-top padding-bottom section-bg-color">
+    <div class="container">
+      <div id="blogDetailContainer">
+        <div class="blog-detail-loading" role="status" aria-live="polite">
+          <i class="fas fa-spinner fa-spin me-2" aria-hidden="true"></i> Loading article...
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ===============>> Blog Detail section end here <<================= -->
+
+  </main>
+
+  <!-- ===============>> footer start here <<================= -->
+  <footer class="footer footer--style2">
+    <div class="container">
+      <div class="footer__wrapper">
+        <div class="footer__bottom">
+          <div class="footer__end">
+            <div class="footer__end-copyright">
+              <p class="mb-0">Copyright © 2026 KesarSecurities. Designed and Developed by MuseOne</p>
+              <p class="mb-0" style="font-size: 12px; opacity: 0.7;">Last Updated: March 2026</p>
+            </div>
+            <div>
+              <ul class="social">
+                <li class="social__item">
+                  <a href="https://www.facebook.com/share/1ApUnLCszC/" target="_blank"
+                    class="social__link social__link--style222" aria-label="Visit our Facebook page (opens in new tab)"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li class="social__item">
+                  <a href="https://www.linkedin.com/in/kedar-oak?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                    target="_blank" class="social__link social__link--style222" aria-label="Visit our LinkedIn profile (opens in new tab)"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li class="social__item">
+                  <a href="https://www.instagram.com/kedar.oak19?igsh=MXJiZWpwYzlnMXBmdg==" target="_blank"
+                    class="social__link social__link--style222" aria-label="Visit our Instagram profile (opens in new tab)"><i class="fab fa-instagram"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__shape">
+      <span class="footer__shape-item footer__shape-item--1"><img src="assets/images/footer/1.png"
+          alt="" aria-hidden="true"></span>
+      <span class="footer__shape-item footer__shape-item--2"> <span></span> </span>
+      <span class="footer__shape-item footer__shape-item--4"><img src="assets/images/icon/shape/2.png"
+          alt="" aria-hidden="true"></span>
+      <span class="footer__shape-item footer__shape-item--5"><img src="assets/images/icon/shape/1.png"
+          alt="" aria-hidden="true"></span>
+    </div>
+  </footer>
+  <!-- ===============>> footer end here <<================= -->
+
+  <!-- ===============>> scrollToTop start here <<================= -->
+  <a href="#" class="scrollToTop scrollToTop--style1" aria-label="Scroll to top of page"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+  <!-- ===============>> scrollToTop ending here <<================= -->
+
+  <!-- vendor plugins -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/all.min.js"></script>
+  <script src="assets/js/swiper-bundle.min.js"></script>
+  <script src="assets/js/aos.js"></script>
+  <script src="assets/js/fslightbox.js"></script>
+  <script src="assets/js/purecounter_vanilla.js"></script>
+  <script src="assets/js/custom.js"></script>
+
+  <!-- Blog Detail Loading Script -->
+  <script>
+    // Function to get URL parameter
+    function getUrlParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // Function to format date
+    function formatDate(dateString) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const date = new Date(dateString);
+      return date.toLocaleDateString('mr-IN', options);
+    }
+
+    // Function to load and render blog detail
+    async function loadBlogDetail() {
+      const blogId = getUrlParameter('id');
+
+      if (!blogId) {
+        showError('No article specified', 'Please select an article to read.');
+        return;
+      }
+
+      try {
+        const response = await fetch('blogs-data.json');
+        const data = await response.json();
+
+        const blog = data.blogs.find(b => b.id === blogId);
+
+        if (!blog) {
+          showError('Article not found', 'The article you are looking for does not exist.');
+          return;
+        }
+
+        // Update page title
+        document.getElementById('pageTitle').textContent = `${blog.title} - Kedar Oak`;
+        document.getElementById('headerTitle').textContent = blog.title;
+
+        // Render blog detail
+        const container = document.getElementById('blogDetailContainer');
+        container.innerHTML = `
+          <div data-aos="fade-up" data-aos-duration="800">
+            <div class="d-flex flex-end">
+
+            </div>
+            <div class="blog-detail__header">
+              <div class="d-flex justify-content-between ">
+                <h1 class="blog-detail__title">${blog.title}</h1>
+                <a href="blogs.html" class="blog-detail__back btn btn-primary">
+                  <i class="fas fa-arrow-left"></i> Back to Articles
+                </a>
+              </div>
+              <div class="blog-detail__meta">
+                <div class="blog-detail__meta-item">
+                  <i class="far fa-calendar-alt"></i>
+                  <span>${formatDate(blog.date)}</span>
+                </div>
+                <div class="blog-detail__meta-item">
+                  <i class="far fa-user"></i>
+                  <span>${blog.author}</span>
+                </div>
+              </div>
+            </div>
+
+            <img src="${blog.image}" alt="${blog.title}" class="blog-detail__image">
+
+            <div class="blog-detail__content">
+              ${blog.content}
+            </div>
+          </div>
+
+          <div class="related-blogs" id="relatedBlogs">
+            <h2 class="related-blogs__title">More Articles</h2>
+            <div class="row g-4" id="relatedBlogsGrid"></div>
+          </div>
+        `;
+
+        // Load related blogs (3 random blogs excluding current one)
+        loadRelatedBlogs(data.blogs, blogId);
+
+        // Reinitialize AOS
+        if (typeof AOS !== 'undefined') {
+          AOS.refresh();
+        }
+
+      } catch (error) {
+        console.error('Error loading blog detail:', error);
+        showError('Unable to load article', 'Please try again later.');
+      }
+    }
+
+    // Function to load related blogs
+    function loadRelatedBlogs(allBlogs, currentBlogId) {
+      const relatedBlogs = allBlogs
+        .filter(blog => blog.id !== currentBlogId)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3);
+
+      const relatedGrid = document.getElementById('relatedBlogsGrid');
+
+      relatedBlogs.forEach((blog, index) => {
+        const blogCard = `
+          <div class="col-md-4">
+            <div class="blog__item" data-aos="fade-up" data-aos-duration="${800 + (index * 100)}">
+              <div class="blog__item-inner blog__item-inner--style2">
+                <div class="blog__thumb">
+                  <img style="max-height: 250px; width: 100%; object-fit: cover;"
+                       src="${blog.image}" alt="${blog.title}">
+                  <h5 class="10 style2">
+                    <span style="padding: 10px; width: 100%; font-size: 18px; min-height: 60px; display: flex; align-items: center; justify-content: center;"
+                          class="blog__meta-tag blog__meta-tag--style1">
+                      ${blog.title}
+                    </span>
+                  </h5>
+                  <h5 class="trk-btn trk-btn--border trk-btn--primary mt-4 d-block">
+                    <a href="blog-detail.html?id=${blog.id}" aria-label="Read more about ${blog.title}">Read More</a>
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        relatedGrid.innerHTML += blogCard;
+      });
+
+      // Reinitialize AOS for related blogs
+      if (typeof AOS !== 'undefined') {
+        AOS.refresh();
+      }
+    }
+
+    // Function to show error message
+    function showError(title, message) {
+      const container = document.getElementById('blogDetailContainer');
+      container.innerHTML = `
+        <div class="blog-error" role="alert" data-aos="fade-up" data-aos-duration="800">
+          <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: #dc3545; margin-bottom: 1rem;"></i>
+          <h2 class="blog-error__title">${title}</h2>
+          <p class="blog-error__text">${message}</p>
+          <a href="blogs.html" class="trk-btn trk-btn--primary">
+            <i class="fas fa-arrow-left me-2"></i> Back to Articles
+          </a>
+        </div>
+      `;
+    }
+
+    // Load blog detail when page is ready
+    document.addEventListener('DOMContentLoaded', loadBlogDetail);
+  </script>
+
+</body>
+</html>
