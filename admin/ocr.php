@@ -10,15 +10,26 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_FILES['image']['tmp_name'])
     exit;
 }
 
-$file    = $_FILES['image'];
+$file = $_FILES['image'];
+if ($file['error'] !== UPLOAD_ERR_OK) {
+    echo json_encode(['error' => 'Upload failed. Please try again.']);
+    exit;
+}
+if ($file['size'] > 10 * 1024 * 1024) {
+    echo json_encode(['error' => 'Image exceeds 10 MB limit.']);
+    exit;
+}
+$finfo    = finfo_open(FILEINFO_MIME_TYPE);
+$mimeType = finfo_file($finfo, $file['tmp_name']);
+finfo_close($finfo);
 $allowed = ['image/jpeg', 'image/png'];
-if (!in_array($file['type'], $allowed, true)) {
+if (!in_array($mimeType, $allowed, true)) {
     echo json_encode(['error' => 'Only JPG and PNG images are accepted.']);
     exit;
 }
 
 $imageData = base64_encode(file_get_contents($file['tmp_name']));
-$mediaType = $file['type'];
+$mediaType = $mimeType;
 
 $prompt = 'Extract all text from this article image. '
         . 'Return ONLY a valid JSON object with exactly two fields: '

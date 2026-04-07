@@ -25,8 +25,15 @@ foreach ($blogs as $b) {
 // Handle image upload (optional on edit)
 $imagePath = trim($_POST['existing_image'] ?? '');
 if (!empty($_FILES['image']['tmp_name'])) {
+    if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+        header('Location: dashboard.php?msg=upload_error');
+        exit;
+    }
+    $finfo    = finfo_open(FILEINFO_MIME_TYPE);
+    $mimeType = finfo_file($finfo, $_FILES['image']['tmp_name']);
+    finfo_close($finfo);
     $allowed = ['image/jpeg', 'image/png'];
-    if (!in_array($_FILES['image']['type'], $allowed, true)) {
+    if (!in_array($mimeType, $allowed, true)) {
         header('Location: dashboard.php?msg=image_error');
         exit;
     }
@@ -37,7 +44,7 @@ if (!empty($_FILES['image']['tmp_name'])) {
     $articleNum = $isEdit
         ? (int) preg_replace('/[^0-9]/', '', $editId)
         : $maxNum + 1;
-    $ext      = ($_FILES['image']['type'] === 'image/png') ? 'png' : 'jpeg';
+    $ext      = ($mimeType === 'image/png') ? 'png' : 'jpeg';
     $filename = $articleNum . '.' . $ext;
     move_uploaded_file($_FILES['image']['tmp_name'], ARTICLES_IMAGE_PATH . $filename);
     $imagePath = 'assets/article/' . $filename;

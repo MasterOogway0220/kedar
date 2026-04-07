@@ -40,6 +40,21 @@ $flash  = $_GET['msg'] ?? '';
             Article deleted.
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
+    <?php elseif ($flash === 'image_error'): ?>
+        <div class="alert alert-danger alert-dismissible fade show">
+            Invalid image type. Only JPG and PNG are accepted.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    <?php elseif ($flash === 'image_too_large'): ?>
+        <div class="alert alert-danger alert-dismissible fade show">
+            Image exceeds the 10 MB size limit.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    <?php elseif ($flash === 'upload_error'): ?>
+        <div class="alert alert-danger alert-dismissible fade show">
+            Image upload failed. Please try again.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
     <?php endif; ?>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
