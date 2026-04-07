@@ -31,103 +31,116 @@ if (!empty($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $editMode ? 'Edit' : 'New' ?> Article — Kedar Admin</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title><?= $editMode ? 'Edit Article' : 'New Article' ?> — Kedar Admin</title>
+    <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="https://cdn.quilljs.com/1.3.7/quill.snow.css">
-    <style>
-        .ql-editor { min-height:280px; font-size:1rem; }
-        #imagePreview { max-width:200px; max-height:150px; border-radius:6px; display:none; margin-top:8px; }
-    </style>
 </head>
-<body class="bg-light">
-<div class="container py-4" style="max-width:800px">
+<body>
+<?php require 'sidebar.php'; ?>
 
-    <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
-        <h1 class="h4 fw-bold mb-0">Kedar Admin Panel</h1>
-        <span class="text-muted small">Logged in as kedar &nbsp;|&nbsp;
-            <a href="logout.php" class="text-danger text-decoration-none">Logout</a></span>
+<div class="main">
+    <div class="topbar">
+        <span class="topbar__title"><?= $editMode ? 'Edit Article' : 'New Article' ?></span>
+        <div class="topbar__actions">
+            <a href="dashboard.php" class="btn btn--ghost btn--sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back
+            </a>
+        </div>
     </div>
 
-    <h2 class="h5 fw-semibold mb-4"><?= $editMode ? 'Edit Article' : 'New Article' ?></h2>
-
-    <form id="articleForm" method="POST" action="save-article.php" enctype="multipart/form-data">
-        <?php if ($editMode): ?>
-            <input type="hidden" name="id" value="<?= htmlspecialchars($blog['id']) ?>">
-            <input type="hidden" name="existing_image" value="<?= htmlspecialchars($blog['image']) ?>">
-        <?php endif; ?>
-        <input type="hidden" name="content" id="contentInput">
-
-        <!-- Title -->
-        <div class="mb-3">
-            <label class="form-label fw-semibold" for="titleInput">Article Title</label>
-            <input type="text" name="title" id="titleInput" class="form-control" required
-                   value="<?= htmlspecialchars($blog['title']) ?>"
-                   placeholder="e.g. शेअर बाजारातील नवीन संधी...">
-        </div>
-
-        <!-- Author -->
-        <div class="mb-3">
-            <label class="form-label fw-semibold" for="authorInput">Expert / Author</label>
-            <input type="text" name="author" id="authorInput" class="form-control"
-                   value="<?= htmlspecialchars($blog['author']) ?>">
-        </div>
-
-        <!-- Excerpt -->
-        <div class="mb-3">
-            <label class="form-label fw-semibold" for="excerptInput">
-                Short Excerpt
-                <span class="text-muted fw-normal">(preview shown on blog listing)</span>
-            </label>
-            <input type="text" name="excerpt" id="excerptInput" class="form-control"
-                   value="<?= htmlspecialchars($blog['excerpt']) ?>"
-                   placeholder="2-3 line summary of the article...">
-        </div>
-
-        <!-- Image Upload -->
-        <div class="mb-3">
-            <label class="form-label fw-semibold" for="imageInput">
-                Article Image
-                <?= $editMode ? '<span class="text-muted fw-normal">(leave empty to keep current)</span>' : '' ?>
-            </label>
-            <?php if ($editMode && !empty($blog['image'])): ?>
-                <div class="mb-2">
-                    <img src="../<?= htmlspecialchars($blog['image']) ?>"
-                         style="max-height:80px; border-radius:4px;" alt="Current image">
-                    <span class="text-muted small ms-2">Current image</span>
-                </div>
+    <div class="content">
+        <form id="articleForm" method="POST" action="save-article.php" enctype="multipart/form-data">
+            <?php if ($editMode): ?>
+                <input type="hidden" name="id" value="<?= htmlspecialchars($blog['id']) ?>">
+                <input type="hidden" name="existing_image" value="<?= htmlspecialchars($blog['image']) ?>">
             <?php endif; ?>
-            <input type="file" name="image" id="imageInput"
-                   class="form-control" accept="image/jpeg,image/png">
-            <img id="imagePreview" alt="Preview">
-        </div>
+            <input type="hidden" name="content" id="contentInput">
 
-        <!-- OCR -->
-        <div class="mb-4">
-            <button type="button" id="ocrBtn" class="btn btn-outline-primary">
-                🔍 Scan Image &amp; Extract Text
-            </button>
-            <span id="ocrStatus" class="ms-2 text-muted small"></span>
-        </div>
+            <div class="form-card">
 
-        <!-- Quill Editor -->
-        <div class="mb-4">
-            <label class="form-label fw-semibold">Article Content</label>
-            <div id="editor"><?= $blog['content'] ?></div>
-        </div>
+                <!-- Basic info -->
+                <div class="form-section">
+                    <div class="form-section__title">Article Details</div>
 
-        <!-- Submit -->
-        <div class="d-flex gap-2">
-            <button type="submit" class="btn btn-success px-4">✅ Save &amp; Publish</button>
-            <a href="dashboard.php" class="btn btn-outline-secondary">Cancel</a>
-        </div>
-    </form>
+                    <div class="form-group">
+                        <label class="form-label" for="titleInput">Title</label>
+                        <input type="text" id="titleInput" name="title" class="form-control" required
+                               value="<?= htmlspecialchars($blog['title']) ?>"
+                               placeholder="Enter article title (Marathi or English)...">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="authorInput">Author / Expert</label>
+                            <input type="text" id="authorInput" name="author" class="form-control"
+                                   value="<?= htmlspecialchars($blog['author']) ?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="excerptInput">
+                                Excerpt
+                                <span class="form-hint">Shown on article listing</span>
+                            </label>
+                            <input type="text" id="excerptInput" name="excerpt" class="form-control"
+                                   value="<?= htmlspecialchars($blog['excerpt']) ?>"
+                                   placeholder="Short 2–3 line summary...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image -->
+                <div class="form-section">
+                    <div class="form-section__title">Featured Image</div>
+
+                    <?php if ($editMode && !empty($blog['image'])): ?>
+                        <div class="current-image">
+                            <img src="../<?= htmlspecialchars($blog['image']) ?>" alt="Current image">
+                            <span class="current-image-label">Current image — upload a new one to replace it</span>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="form-group" style="margin-bottom:0">
+                        <label class="form-label" for="imageInput">
+                            <?= $editMode ? 'Replace Image' : 'Upload Image' ?>
+                            <span class="form-hint">JPG or PNG, max 10 MB</span>
+                        </label>
+                        <input type="file" id="imageInput" name="image"
+                               class="form-control form-control--file" accept="image/jpeg,image/png">
+                        <img id="imagePreview" alt="Preview">
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="form-section">
+                    <div class="form-section__title">Article Content</div>
+                    <div class="form-group" style="margin-bottom:0">
+                        <div id="editor"><?= $blog['content'] ?></div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="form-footer">
+                    <button type="submit" class="btn btn--success">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <?= $editMode ? 'Save Changes' : 'Publish Article' ?>
+                    </button>
+                    <a href="dashboard.php" class="btn btn--ghost">Cancel</a>
+                </div>
+
+            </div>
+        </form>
+    </div>
 </div>
 
 <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 const quill = new Quill('#editor', {
     theme: 'snow',
+    placeholder: 'Write the article content here...',
     modules: {
         toolbar: [
             ['bold', 'italic', 'underline'],
@@ -139,7 +152,6 @@ const quill = new Quill('#editor', {
     }
 });
 
-// Image preview on file select
 document.getElementById('imageInput').addEventListener('change', function () {
     const file = this.files[0];
     if (!file) return;
@@ -148,35 +160,6 @@ document.getElementById('imageInput').addEventListener('change', function () {
     preview.style.display = 'block';
 });
 
-// OCR: send image to ocr.php, populate title + content
-document.getElementById('ocrBtn').addEventListener('click', async function () {
-    const imageInput = document.getElementById('imageInput');
-    if (!imageInput.files.length) {
-        alert('Please select an article image first.');
-        return;
-    }
-    const status = document.getElementById('ocrStatus');
-    status.textContent = 'Scanning image, please wait...';
-    this.disabled = true;
-
-    const fd = new FormData();
-    fd.append('image', imageInput.files[0]);
-
-    try {
-        const res  = await fetch('ocr.php', { method: 'POST', body: fd });
-        const data = await res.json();
-        if (data.error) throw new Error(data.error);
-        if (data.title)   document.getElementById('titleInput').value = data.title;
-        if (data.content) quill.root.innerHTML = data.content;
-        status.textContent = '✅ Text extracted successfully!';
-    } catch (e) {
-        status.textContent = '❌ ' + e.message;
-    } finally {
-        this.disabled = false;
-    }
-});
-
-// Sync Quill HTML into hidden input before form submit
 document.getElementById('articleForm').addEventListener('submit', function () {
     document.getElementById('contentInput').value = quill.root.innerHTML;
 });
