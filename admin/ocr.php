@@ -29,7 +29,6 @@ if (!in_array($mimeType, $allowed, true)) {
 }
 
 $imageData = base64_encode(file_get_contents($file['tmp_name']));
-$mediaType = $mimeType;
 
 $prompt = 'Extract all text from this article image. '
         . 'Return ONLY a valid JSON object with exactly two fields: '
@@ -40,37 +39,32 @@ $prompt = 'Extract all text from this article image. '
         . 'Do not include any explanation, markdown fences, or extra text. Return only the raw JSON object.';
 
 $payload = [
-    'model'      => 'claude-haiku-4-5-20251001',
-    'max_tokens' => 4096,
-    'messages'   => [[
-        'role'    => 'user',
-        'content' => [
+    'contents' => [[
+        'parts' => [
             [
-                'type'   => 'image',
-                'source' => [
-                    'type'       => 'base64',
-                    'media_type' => $mediaType,
-                    'data'       => $imageData,
+                'inline_data' => [
+                    'mime_type' => $mimeType,
+                    'data'      => $imageData,
                 ],
             ],
             [
-                'type' => 'text',
                 'text' => $prompt,
             ],
         ],
     ]],
+    'generationConfig' => [
+        'maxOutputTokens' => 4096,
+    ],
 ];
 
-$ch = curl_init('https://api.anthropic.com/v1/messages');
+$url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' . GEMINI_API_KEY;
+
+$ch = curl_init($url);
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_POST           => true,
     CURLOPT_POSTFIELDS     => json_encode($payload),
-    CURLOPT_HTTPHEADER     => [
-        'Content-Type: application/json',
-        'x-api-key: '          . CLAUDE_API_KEY,
-        'anthropic-version: 2023-06-01',
-    ],
+    CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
     CURLOPT_TIMEOUT        => 60,
 ]);
 
@@ -79,12 +73,12 @@ $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
 if ($response === false || $httpCode !== 200) {
-    echo json_encode(['error' => 'Claude API error (HTTP ' . $httpCode . '). Check your API key in config.php.']);
+    echo json_encode(['error' => 'Gemini API error (HTTP ' . $httpCode . '). Check your API key in config.php.']);
     exit;
 }
 
 $apiData = json_decode($response, true);
-$text    = trim($apiData['content'][0]['text'] ?? '');
+$text    = trim($apiData['candidates'][0]['content']['parts'][0]['text'] ?? '');
 
 // Strip markdown code fences if the model added them despite instructions
 $text = preg_replace('/^```(?:json)?\s*/i', '', $text);
