@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
     $password = trim($_POST['password'] ?? '');
     if ($username === ADMIN_USERNAME && $password === ADMIN_PASSWORD) {
+        session_regenerate_id(true);   // prevents session fixation
         $_SESSION['logged_in'] = true;
         header('Location: dashboard.php');
         exit;
